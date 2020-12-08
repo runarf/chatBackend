@@ -1,17 +1,10 @@
 package xyz.runar.chat;
 
 
+import lombok.Value;
+
+@Value
 public class NewMessage {
-
-	private String name;
+	private String author;
 	private String message;
-
-	public NewMessage(String name) {
-		this.name = name;
-	}
-
-	public String getName() {
-		return name;
-	}
-	public String getMessage() { return message; }
 }

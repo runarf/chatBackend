@@ -1,21 +1,11 @@
 package xyz.runar.chat;
 
+import lombok.Value;
+
+@Value
 public class SavedMessage {
-
-	private String content;
-	private String message;
-	private String id;
-	private String timestamp;
-
-	public SavedMessage() {
-	}
-
-	public SavedMessage(String content) {
-		this.content = content;
-	}
-
-	public String getContent() {
-		return content;
-	}
-
+	String name;
+	String message;
+	Long id;
+	Long timestamp;
 }
