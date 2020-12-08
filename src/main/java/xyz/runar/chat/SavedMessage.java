@@ -4,8 +4,8 @@ import lombok.Value;
 
 @Value
 public class SavedMessage {
-	String name;
-	String message;
 	Long id;
+	String author;
+	String message;
 	Long timestamp;
 }
