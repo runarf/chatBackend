@@ -6,12 +6,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.util.HtmlUtils;
 
 @Controller
-public class GreetingController {
+public class NewMessageController {
 
 	@MessageMapping("/hello")
 	@SendTo("/topic/greetings")
-	public Greeting greeting(HelloMessage message) {
-		return new Greeting("Hello, " + HtmlUtils.htmlEscape(message.getName()) + "!");
+	public SavedMessage greeting(NewMessage newMessage) {
+		return new SavedMessage("Hello, " + HtmlUtils.htmlEscape(newMessage.getName()) + "!");
 	}
 
 }
