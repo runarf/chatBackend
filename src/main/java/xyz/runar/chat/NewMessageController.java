@@ -5,17 +5,31 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 
+import java.time.Instant;
+
 @Controller
 public class NewMessageController {
 
+    private Long idCount = 1L;
+
     @Autowired
-    SavedMessagesRepository savedMessagesRepository;
+    SavedMessageDatabaseRepository savedMessageDatabaseRepository;
 
     @MessageMapping("/hello")
     @SendTo("/topic/greetings")
     public SavedMessage greeting(NewMessage newMessage) {
-        var savedMessage = savedMessagesRepository.saveNewMessage(newMessage);
-        return savedMessage;
+
+        Long id = idCount;
+        idCount = idCount + 1;
+        SavedMessage savedMessageBeforeSave = new SavedMessage(
+            id,
+            newMessage.getAuthor(),
+            newMessage.getMessage(),
+            Instant.now().toEpochMilli()
+        );
+
+        var savedMessageAfterSave = savedMessageDatabaseRepository.save(savedMessageBeforeSave);
+        return savedMessageAfterSave;
     }
 
 }

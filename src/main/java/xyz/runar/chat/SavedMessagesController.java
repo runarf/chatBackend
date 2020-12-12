@@ -5,17 +5,18 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 @RestController
 public class SavedMessagesController {
 
     @Autowired
-    SavedMessagesRepository savedMessagesRepository;
+    SavedMessageDatabaseRepository savedMessagesDatabaseRepository;
 
     @CrossOrigin
     @GetMapping("/saved-messages")
-    public List<SavedMessage> getSavedMessages() {
-        return savedMessagesRepository.getSavedMessages();
+    public Iterable<SavedMessage> getSavedMessages() {
+        var savedMessages = savedMessagesDatabaseRepository.findAll();
+        System.out.println(savedMessages);
+
+        return savedMessages;
     }
 }
