@@ -10,8 +10,6 @@ import java.time.Instant;
 @Controller
 public class NewMessageController {
 
-    private Long idCount = 1L;
-
     @Autowired
     SavedMessageDatabaseRepository savedMessageDatabaseRepository;
 
@@ -19,10 +17,8 @@ public class NewMessageController {
     @SendTo("/topic/greetings")
     public SavedMessage greeting(NewMessage newMessage) {
 
-        Long id = idCount;
-        idCount = idCount + 1;
         SavedMessage savedMessageBeforeSave = new SavedMessage(
-            id,
+            null,
             newMessage.getAuthor(),
             newMessage.getMessage(),
             Instant.now().toEpochMilli()

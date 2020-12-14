@@ -15,7 +15,6 @@ public class SavedMessagesController {
     @GetMapping("/saved-messages")
     public Iterable<SavedMessage> getSavedMessages() {
         var savedMessages = savedMessagesDatabaseRepository.findAll();
-        System.out.println(savedMessages);
 
         return savedMessages;
     }
